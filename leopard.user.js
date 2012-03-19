@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 1.5
+// @version 1.5.1
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // @updateURL http://userscripts.org/scripts/source/128626.meta.js
+// @downloadURL https://userscripts.org/scripts/source/128626.user.js
 // ==/UserScript==
 
 function leopardize(str) {
