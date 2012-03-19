@@ -1,17 +1,17 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 1.2
+// @version 1.5
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // @updateURL http://userscripts.org/scripts/source/128626.meta.js
 // ==/UserScript==
 
 function leopardize(str) {
-  return str.replace("keyboard","leopard")
-    .replace("Keyboard","Leopard")
-    .replace("KEYBOARD","LEOPARD")
-    .replace(/k[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/,"leopard")
-    .replace(/K[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/,"Leopard")
+  return str.replace(/keyboard/g,"leopard")
+    .replace(/Keyboard/g,"Leopard")
+    .replace(/KEYBOARD/g,"LEOPARD")
+    .replace(/k[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"leopard")
+    .replace(/K[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"Leopard")
 }
 
 function replaceTextContent(node) {
