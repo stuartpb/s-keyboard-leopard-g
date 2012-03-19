@@ -1,17 +1,22 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 1.0
+// @version 1.1
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // ==/UserScript==
 
+function leopardize(str) {
+ return str.replace("keyboard","leopard")
+    .replace("Keyboard","Leopard")
+    .replace("KEYBOARD","LEOPARD")
+    .replace(/k[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/,"leopard")
+    .replace(/K[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/,"Leopard")
+}
+
 function replaceTextContent(node) {
   var length, childNodes
   if (node.nodeType == Node.TEXT_NODE) {
-    node.textContent = node.textContent.replace("keyboard","leopard")
-    node.textContent = node.textContent.replace("Keyboard","Leopard")
-    node.textContent = node.textContent.replace("KEYBOARD","LEOPARD")
-    node.textContent = node.textContent.replace(/keyboard/i,"leopard")
+    node.textContent = leopardize(node.textContent)
   } else {
     childNodes = node.childNodes
     length = childNodes.length
@@ -22,4 +27,4 @@ function replaceTextContent(node) {
 }
 
 replaceTextContent(document.body)
-//replaceTextContent(document.head.title)
+document.head.title = leopardize(document.head.title)
