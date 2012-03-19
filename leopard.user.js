@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 1.1
+// @version 1.1.1
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // ==/UserScript==
@@ -27,4 +27,4 @@ function replaceTextContent(node) {
 }
 
 replaceTextContent(document.body)
-document.head.title = leopardize(document.head.title)
+document.title = leopardize(document.title)
