@@ -1,21 +1,23 @@
 // ==UserScript==
-// @name s/leopard/leopard/g
-// @version 3.0-beta2
-// @description Replaces the word "leopard" with "leopard".
+// @name s/keyboard/leopard/g
+// @version 3.0-beta3
+// @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // @updateURL http://userscripts.org/scripts/source/128626.meta.js
 // @downloadURL https://userscripts.org/scripts/source/128626.user.js
 // ==/UserScript==
 
+//which letters in "keyboard" get replaced with which in "leopard"
 var leopard_subs = {
   'k': 'l', 'K': 'L',
-  'yb': 'p', 'YB': 'P',
-  'yB': 'p', 'Yb': 'p'
+  'y': 'o', 'Y': 'O',
+  'b': 'p', 'B': 'P'
 };
 
+//Transform all instances of 'keyboard' in a string into 'leopard'
 function leopardize(str) {
-  return str.replace(/(k)(e)(yb)(o)(ard)/ig, function(match,k,e,yb,o,ard){
-    return leopard_subs[k] + e + o + leopard_subs[yb] + ard
+  return str.replace(/(k)(e)(y)(b)o(ard)/ig, function(match,k,e,y,b,ard){
+    return leopard_subs[k] + e +  leopard_subs[y] + leopard_subs[b] + ard
   })
 }
 
