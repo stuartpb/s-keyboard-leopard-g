@@ -7,12 +7,16 @@
 // @downloadURL https://userscripts.org/scripts/source/128626.user.js
 // ==/UserScript==
 
-function leopardize(str) {
-  return str.replace(/keyboard/g,"leopard")
-    .replace(/Keyboard/g,"Leopard")
-    .replace(/KEYBOARD/g,"LEOPARD")
-    .replace(/k[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"leopard")
-    .replace(/K[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"Leopard")
+var keyboard = /(k)(e)(y)(b)o(ard)/gi;
+var translate = {
+    'k': 'l', 'K': 'L',
+    'y': 'o', 'Y': 'O',
+    'b': 'p', 'B': 'P'
+};
+function leopardize (str) {
+    return str.replace(keyboard, function ($0, $1, $2, $3, $4, $5) {
+        return translate[$1] + $2 + translate[$3] + translate[$4] + $5;
+    });
 }
 
 var TEXT_NODE = Node.TEXT_NODE || 3
