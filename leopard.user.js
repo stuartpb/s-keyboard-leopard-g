@@ -1,30 +1,25 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 2.2
+// @version 3.0
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
+// @license MIT License
 // @updateURL http://userscripts.org/scripts/source/128626.meta.js
 // @downloadURL https://userscripts.org/scripts/source/128626.user.js
 // ==/UserScript==
 
-// Copyright (c) 2012, Stuart P. Bentley <stuart@testtrack4.com>
+//which letters in "keyboard" get replaced with which in "leopard"
+var leopard_subs = {
+  'k': 'l', 'K': 'L',
+  'y': 'o', 'Y': 'O',
+  'b': 'p', 'B': 'P'
+};
 
-// Permission to use, copy, modify, and/or distribute this software for any
-// purpose with or without fee is hereby granted, provided that the above
-// copyright notice and this permission notice appear in all copies.
-
-// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-// WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-// MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-// ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-// WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-// OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
+//Transform all instances of 'keyboard' in a string into 'leopard'
 function leopardize(str) {
-  return str.replace(/KEYBOARD/g,"LEOPARD")
-    .replace(/k[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"leopard")
-    .replace(/K[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"Leopard")
+  return str.replace(/(k)(e)(y)(b)o(ard)/ig, function(match,k,e,y,b,ard){
+    return leopard_subs[k] + e +  leopard_subs[y] + leopard_subs[b] + ard
+  })
 }
 
 var TEXT_NODE = Node.TEXT_NODE || 3
