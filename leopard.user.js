@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 3.0
+// @version 3.1
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // @license MIT License
@@ -26,11 +26,15 @@ var TEXT_NODE = Node.TEXT_NODE || 3
 var replacingContent = false
 
 function replaceTextContent(node) {
-  //flag that content is being replaced so the event it generates
-  //won't trigger another replacement
-  replacingContent = true
-  node.textContent = leopardize(node.textContent)
-  replacingContent = false
+  //only perform replacement if content was actually changed
+  var leopardizedTextContent = leopardize(node.textContent)
+  if(leopardizedTextContent != node.textContent){
+    //flag that content is being replaced so the event it generates
+    //won't trigger another replacement
+    replacingContent = true
+    node.textContent = leopardizedTextContent
+    replacingContent = false
+  }
 }
 
 function changeTextNodes(node) {
