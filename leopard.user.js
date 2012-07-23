@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 3.0
+// @version 3.1
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // @license MIT License
