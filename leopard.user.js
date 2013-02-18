@@ -9,8 +9,8 @@
 // ==/UserScript==
 
 // Copyright 2013 Stuart P. Bentley.
-// You may use this work freely as long as this notice is included.
-// The work is provided "as is" without warranty of any kind.
+// This work may be used freely as long as this notice is included.
+// The work is provided "as is" without warranty, express or implied.
 
 // The pattern to match
 var keyboard_pattern = /(k)(e)(y)(b)o(ard)/ig
