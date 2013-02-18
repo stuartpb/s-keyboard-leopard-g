@@ -3,10 +3,14 @@
 // @version 3.1
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
-// @license MIT License
+// @license License In Three Lines
 // @updateURL http://userscripts.org/scripts/source/128626.meta.js
 // @downloadURL https://userscripts.org/scripts/source/128626.user.js
 // ==/UserScript==
+
+// Copyright 2013 Stuart P. Bentley.
+// You may use this work freely as long as this notice is included.
+// The work is provided "as is" without warranty of any kind.
 
 // The pattern to match
 var keyboard_pattern = /(k)(e)(y)(b)o(ard)/ig
