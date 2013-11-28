@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name s/keyboard/leopard/g
-// @version 3.1
+// @version 3.2.0
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // @license License In Three Lines
@@ -23,7 +23,7 @@ var leopard_subs = {
 };
 
 // construct "leopard" replacement for "keyboard" components
-function replacement_leopard(match,k,e,y,b,ard){
+function replacement_leopard(match,k,e,y,b,ard) {
     return leopard_subs[k] + e +  leopard_subs[y] + leopard_subs[b] + ard
 }
 
@@ -31,10 +31,6 @@ function replacement_leopard(match,k,e,y,b,ard){
 function leopardize(str) {
   return str.replace(keyboard_pattern, replacement_leopard)
 }
-
-// define the noteType value for TEXT_NODEs (the kind we want to replace)
-// Some browsers may fail to make this value available - it's 3
-var TEXT_NODE = Node.TEXT_NODE || 3
 
 // Flag to signal that we're replacing text, so that change doesn't trigger
 // another replacement (technically, that can't happen if all the instances
@@ -54,14 +50,18 @@ function replaceTextContent(node) {
 
 function changeTextNodes(node) {
   var length, childNodes
-  //If this is a text node, leopardize it
-  if (node.nodeType == TEXT_NODE) {
+  // If this is a text node, attempt substitutions on it
+  if (node.nodeName == '#text') {
     replaceTextContent(node)
-  //If this is anything other than a text node, recurse any children
-  } else {
+  // If this is an ordinary content node, recurse any children
+  // ("ordinary" here means a node where text content doesn't have meaning
+  //  beyond human text - <style> and <script> are the only nodes of this type
+  //  that I know of)
+  } else if (node.nodeName.toLowerCase() != 'style'
+    && node.nodeName.toLowerCase() != 'script') {
     childNodes = node.childNodes
     length = childNodes.length
-    for(var i=0; i<length; ++i){
+    for(var i = 0; i < length; ++i){
       changeTextNodes(childNodes[i])
     }
   }
