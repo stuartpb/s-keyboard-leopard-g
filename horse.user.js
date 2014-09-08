@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name s/keyboard/leopard/g
-// @version 3.2.0
-// @description Replaces the word "keyboard" with "leopard".
+// @name s/force/horse/g
+// @version 1.0.0
+// @description Replaces the word "force" with "horse".
 // @match *://*/*
 // @license License In Three Lines
 // @updateURL http://userscripts.org/scripts/source/128626.meta.js
@@ -13,37 +13,36 @@
 // The work is provided "as is" without warranty, express or implied.
 
 // The pattern to match
-var keyboard_pattern = /(k)(e)(y)(b)o(ard)/ig
+var force_pattern = /(f)(or)(c)(e)/ig
 
-// which letters in "keyboard" get replaced with which in "leopard"
-var leopard_subs = {
-  'k': 'l', 'K': 'L',
-  'y': 'o', 'Y': 'O',
-  'b': 'p', 'B': 'P'
+// which letters in "force" get replaced with which in horse"
+var horse_subs = {
+  'f': 'h', 'F': 'H',
+  'c': 's', 'C': 'S'
 };
 
-// construct "leopard" replacement for "keyboard" components
-function replacement_leopard(match,k,e,y,b,ard) {
-    return leopard_subs[k] + e +  leopard_subs[y] + leopard_subs[b] + ard
+// construct "horse" replacement for "force" components
+function replacement_horse(match,f,or,c,e) {
+    return horse_subs[f] + or + horse_subs[c] + e
 }
 
-// Transform all instances of 'keyboard' in a string into 'leopard'
-function leopardize(str) {
-  return str.replace(keyboard_pattern, replacement_leopard)
+// Transform all instances of 'force' in a string into 'horse'
+function horseidize(str) {
+  return str.replace(force_pattern, replacement_horse)
 }
 
 // Flag to signal that we're replacing text, so that change doesn't trigger
 // another replacement (technically, that can't happen if all the instances
-// of "keyboard" that would trigger a replacement have been replaced with
-// "leopard", but it's still good practice)
+// of "force" that would trigger a replacement have been replaced with
+// "horse", but it's still good practice)
 var replacingContent = false
 
 function replaceTextContent(node) {
-  if (~node.textContent.search(keyboard_pattern)) {
+  if (~node.textContent.search(force_pattern)) {
     //flag that content is being replaced so the event it generates
     //won't trigger another replacement
     replacingContent = true
-    node.textContent = leopardize(node.textContent)
+    node.textContent = horseidize(node.textContent)
     replacingContent = false
   }
 }
@@ -80,6 +79,7 @@ function cdm_listener(event) {
 }
 
 changeTextNodes(document.body)
-document.title = leopardize(document.title)
+document.title = horseidize(document.title)
 document.body.addEventListener ("DOMNodeInserted", insertion_listener, false)
 document.body.addEventListener ("DOMCharacterDataModified", cdm_listener, false)
+
