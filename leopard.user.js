@@ -4,8 +4,8 @@
 // @description Replaces the word "keyboard" with "leopard".
 // @match *://*/*
 // @license License In Three Lines
-// @updateURL http://userscripts.org/scripts/source/128626.meta.js
-// @downloadURL https://userscripts.org/scripts/source/128626.user.js
+// @updateURL https://greasyfork.org/scripts/5141-s-keyboard-leopard-g/code/skeyboardleopardg.user.js
+// @downloadURL https://greasyfork.org/scripts/5141-s-keyboard-leopard-g/code/skeyboardleopardg.user.js
 // ==/UserScript==
 
 // Copyright 2014 Stuart P. Bentley.
