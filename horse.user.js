@@ -4,8 +4,6 @@
 // @description Replaces the word "force" with "horse".
 // @match *://*/*
 // @license License In Three Lines
-// @updateURL http://userscripts.org/scripts/source/128626.meta.js
-// @downloadURL https://userscripts.org/scripts/source/128626.user.js
 // ==/UserScript==
 
 // Copyright 2014 Stuart P. Bentley.
