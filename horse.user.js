@@ -15,7 +15,7 @@
 // The pattern to match
 var force_pattern = /(f)(or)(c)(e)/ig
 
-// which letters in "force" get replaced with which in horse"
+// which letters in "force" get replaced with which in "horse"
 var horse_subs = {
   'f': 'h', 'F': 'H',
   'c': 's', 'C': 'S'
@@ -27,7 +27,7 @@ function replacement_horse(match,f,or,c,e) {
 }
 
 // Transform all instances of 'force' in a string into 'horse'
-function horseidize(str) {
+function horsify(str) {
   return str.replace(force_pattern, replacement_horse)
 }
 
@@ -42,7 +42,7 @@ function replaceTextContent(node) {
     //flag that content is being replaced so the event it generates
     //won't trigger another replacement
     replacingContent = true
-    node.textContent = horseidize(node.textContent)
+    node.textContent = horsify(node.textContent)
     replacingContent = false
   }
 }
@@ -79,7 +79,7 @@ function cdm_listener(event) {
 }
 
 changeTextNodes(document.body)
-document.title = horseidize(document.title)
+document.title = horsify(document.title)
 document.body.addEventListener ("DOMNodeInserted", insertion_listener, false)
 document.body.addEventListener ("DOMCharacterDataModified", cdm_listener, false)
 
