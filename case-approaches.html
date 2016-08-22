@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Much Ado About Leopards</title>
+<script>
+var testcases = [
+  "keyboard",
+  "Keyboard",
+  "KEYBOARD",
+  "KeyBoard",
+  "keyBoard",
+  "KEYboard",
+  "keyBOARD",
+  "KEYBoard",
+  "KeyBOARD",
+  "kEYBOARD",
+  "KeyboarD",
+  "keybOard",
+  "KEYBoARD",
+  "KEyBOARD",
+  "KEYboARD",
+  "KeYbOaRd",
+  "kEyBoArD",
+  "KeYBoaRd",
+  "KeyBOaRD",
+  "kEybOARd",
+  "kEyBOARd",
+  "keyBOARd",
+]
+
+
+function classic(str) {
+  return str.replace(/KEYBOARD/g,"LEOPARD")
+    .replace(/k[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"leopard")
+    .replace(/K[Ee][Yy][Bb][Oo][Aa][Rr][Dd]/g,"Leopard")
+}
+
+//As it happens, they can all comfortably share one table
+var leopard_subs = {
+  'k': 'l', 'K': 'L',
+  'y': 'o', 'Y': 'O',
+  'b': 'p', 'B': 'P',
+  'yb': 'p', 'YB': 'P',
+  'yB': 'p', 'Yb': 'p',
+  'yo': 'o', 'YO': 'O',
+  'yO': 'O', 'Yo': 'O'
+};
+
+function dropo(str) {
+  return str.replace(/(k)(e)(y)(b)o(ard)/ig, function(match,k,e,y,b,ard){
+    return leopard_subs[k] + e + leopard_subs[y]+ leopard_subs[b] + ard
+  })
+}
+
+function tpo(str) {
+  return str.replace(/(k)(e)y(b)(o)(ard)/ig, function(match,k,e,b,o,ard){
+    return leopard_subs[k] + e + o + leopard_subs[b] + ard
+  })
+}
+
+function punnett(str) {
+  return str.replace(/(k)(e)(yb)(o)(ard)/ig, function(match,k,e,yb,o,ard){
+    return leopard_subs[k] + e + o + leopard_subs[yb] + ard
+  })
+}
+
+function punnettor(str) {
+  return str.replace(/(k)(e)(y)(b)(o)(ard)/ig, function(match,k,e,y,b,o,ard){
+    return leopard_subs[k] + e + leopard_subs[y+o]+ leopard_subs[b] + ard
+  })
+}
+
+
+var leopardizers = [classic, dropo, tpo, punnett, punnettor]
+
+function popTable() {
+  var ext = document.getElementById("examples")
+  testcases.forEach(function(testcase){
+    var newrow = ext.insertRow(-1)
+    var excell = newrow.insertCell(-1)
+    excell.textContent = testcase
+    leopardizers.forEach(function(leopardizer){
+      var lcell = newrow.insertCell(-1)
+      lcell.textContent = leopardizer(testcase)
+    })
+  })
+}
+</script>
+</head>
+<body onload="popTable()">
+<dl>
+<dd>Classic</dd>
+<dt>If the entire input is capitalized, capitalize the output. Otherwise, keep the capitalization of the 'k' and lowercase the rest.</dt>
+</dl>
+The new approaches take the case of letters from the input to determine the output.
+<dl>
+<dd>Dropo</dd>
+<dt>'K' becomes 'L', the 'e' stays the same, 'y' becomes 'o', 'b' becomes 'p', and the letters 'ard' at the end keep their capitalizations. The 'O' in the input is ignored.</dt>
+<dd>TPO</dd>
+<dt>'K' becomes 'L', the 'e' stays the same, 'b' becomes 'p', and the letters 'ard' at the end keep their capitalizations. The 'O' in 'keyboard' is transposed for the 'O' in 'leopard'. The 'Y' in the input is ignored.</dt>
+<dd>Punnett</dd>
+<dt>'K' becomes 'L', the 'e' stays the same, and the letters 'ard' at the end keep their capitalizations. The 'O' in 'keyboard' is transposed for the 'O' in 'leopard'. The 'P' in 'leoPard' is only capitalized if both the 'Y' and the 'B' in 'keyboard' were capitalized.</dt>
+</dl>
+<table id="examples">
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Classic</th>
+  <th>Dropo</th>
+  <th>TPO</th>
+  <th>Punnett</th>
+  <th>Punnettor</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</body>
+</html>
